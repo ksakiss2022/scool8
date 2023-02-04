@@ -3,11 +3,12 @@ package ru.hogwarts.scool8.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.hogwarts.scool8.model.Faculty;
 import ru.hogwarts.scool8.model.Student;
 import ru.hogwarts.scool8.service.StudentService;
 
 import java.util.Collection;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("students")
@@ -49,12 +50,22 @@ public class StudentController {
 
     @DeleteMapping("{id}") //DELETE http://localhost:8080/students/23
     public ResponseEntity deleteStudent(@PathVariable Long id) {
-       studentService.deletStudent(id);
+        studentService.deletStudent(id);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/age/{age}") //GET http://localhost:8080/student/age/22
     public Collection<Student> getStudentByAge(@PathVariable int age) {
-        return studentService.getStudentByAge(age);
+        return studentService.findStudentByAge(age);
+    }
+
+    @GetMapping("finde-students") //GET http://localhost:8080/student/finde-students
+    public Collection<Student> findStudentByMinAgeAndMaxAge(@RequestParam int minAge, @RequestParam int maxAge) {
+        return studentService.findStudentByAgeBetween(minAge, maxAge);
+    }
+
+    @GetMapping("students-faculty/{id}") //GET http://localhost:8080/student/finde-faculty-by-students-id
+    public Faculty getFaculty(@PathVariable Long id) {
+        return studentService.getFaculty(id);
     }
 }

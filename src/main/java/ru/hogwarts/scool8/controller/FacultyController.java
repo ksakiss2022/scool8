@@ -3,10 +3,10 @@ package ru.hogwarts.scool8.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.scool8.model.Faculty;
+import ru.hogwarts.scool8.model.Student;
 import ru.hogwarts.scool8.service.FacultyService;
 
 import java.util.Collection;
-import java.util.List;
 
 @RestController
 @RequestMapping("facultys")
@@ -27,9 +27,15 @@ public class FacultyController {
         return facultyService.createFaculty(faculty);
     }
 
-
     @GetMapping //GET http://localhost:8080/facultys
-    public ResponseEntity<Collection<Faculty>> getAllfacultys() {
+    public ResponseEntity findFaculty(@RequestParam(required = false) String name,
+                                      @RequestParam(required = false) String color) {
+        if (name != null && !name.isBlank()) {
+            return ResponseEntity.ok(facultyService.findFacultyByName(name));
+        }
+        if (color != null && !color.isBlank()) {
+            return ResponseEntity.ok(facultyService.findFacultyByColor(color));
+        }
         return ResponseEntity.ok(facultyService.getAllfacultys());
     }
 
@@ -46,6 +52,12 @@ public class FacultyController {
 
     @GetMapping("/color/{color}") //GET http://localhost:8080/facultys/color/blue
     public Collection<Faculty> getFacultyByColor(@PathVariable String color) {
-        return facultyService.getFacultyByColor(color);
+        return facultyService.findFacultyByColor(color);
     }
+
+    @GetMapping("facultys-student/{id}") //GET http://localhost:8080/favultys/finde-students-by-faculty-id
+    public Collection<Student> getFacultyStudents(@PathVariable Long id) {
+        return facultyService.getFacultyStudents(id);
+    }
+
 }
