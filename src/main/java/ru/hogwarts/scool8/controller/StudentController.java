@@ -1,12 +1,23 @@
 package ru.hogwarts.scool8.controller;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import ru.hogwarts.scool8.model.Avatar;
 import ru.hogwarts.scool8.model.Faculty;
 import ru.hogwarts.scool8.model.Student;
+import ru.hogwarts.scool8.service.AvatarService;
 import ru.hogwarts.scool8.service.StudentService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 
 
@@ -68,4 +79,5 @@ public class StudentController {
     public Faculty getFaculty(@PathVariable Long id) {
         return studentService.getFaculty(id);
     }
+
 }
