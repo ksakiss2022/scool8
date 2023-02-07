@@ -2,6 +2,7 @@ package ru.hogwarts.scool8.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -20,8 +21,11 @@ public class Faculty {
         return students;
     }
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty")
+
+  //  @JsonIgnore
+    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty")
+     @OneToMany(mappedBy = "faculty")
+     @JsonManagedReference
     private Collection<Student> students;
 
     public Faculty() {
