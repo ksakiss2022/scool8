@@ -17,15 +17,18 @@ public class Faculty {
     private String name;
     private String color;
 
+    public Faculty(long id, String name, String color) {
+    }
+
     public Collection<Student> getStudents() {
         return students;
     }
 
 
-  //  @JsonIgnore
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty")
-     @OneToMany(mappedBy = "faculty")
-     @JsonManagedReference
+    //  @OneToMany(mappedBy = "faculty")
+    //  @JsonManagedReference
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty")
     private Collection<Student> students;
 
     public Faculty() {
@@ -78,3 +81,4 @@ public class Faculty {
                 '}';
     }
 }
+//spring.jpa.hibernate.ddl-auto=update
