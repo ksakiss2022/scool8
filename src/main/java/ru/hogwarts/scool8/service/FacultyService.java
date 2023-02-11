@@ -48,6 +48,5 @@ public class FacultyService {
     public Collection<Student> getFacultyStudents(Long id) {
         return facultyRepository.findById(id).get().getStudents();
     }
-
 }
 
