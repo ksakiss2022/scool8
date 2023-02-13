@@ -1,6 +1,7 @@
 package ru.hogwarts.scool8.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
@@ -84,5 +86,10 @@ public class AvatarService {
             return baos.toByteArray();
 
         }
+    }
+
+    public List<Avatar> getAllAvatar(Integer pageNumber, Integer pageSize) {
+        PageRequest pageRequest=PageRequest.of(pageNumber-1,pageSize);
+        return avatarRepository.findAll(pageRequest).getContent();
     }
 }
