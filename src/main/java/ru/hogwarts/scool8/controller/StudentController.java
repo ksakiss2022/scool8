@@ -1,6 +1,7 @@
 package ru.hogwarts.scool8.controller;
 
 
+import liquibase.pro.packaged.S;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import ru.hogwarts.scool8.model.Student;
 import ru.hogwarts.scool8.service.StudentService;
 
 import java.util.Collection;
+import java.util.List;
 
 
 @RestController
@@ -70,4 +72,9 @@ public class StudentController {
         return studentService.getFaculty(id);
     }
 
+    @GetMapping("/student/name{name}") //GET http://localhost:8080/student/name{name}
+    public ResponseEntity<List<Student>> getStudentByName(@PathVariable("name")String name){
+        List<Student> student=studentService.getStudentByName(name);
+        return ResponseEntity.ok(student);
+    }
 }
