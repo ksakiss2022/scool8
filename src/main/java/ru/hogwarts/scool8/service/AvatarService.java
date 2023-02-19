@@ -1,5 +1,7 @@
 package ru.hogwarts.scool8.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ import static java.nio.file.StandardOpenOption.CREATE_NEW;
 @Service
 @Transactional
 public class AvatarService {
+    Logger logger= LoggerFactory.getLogger(AvatarService.class);
     @Value("${students.avatar.dir.path}")
     private String avatarsDir;
 

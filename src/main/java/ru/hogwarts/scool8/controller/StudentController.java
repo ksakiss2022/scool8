@@ -1,7 +1,6 @@
 package ru.hogwarts.scool8.controller;
 
 
-import liquibase.pro.packaged.S;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +22,8 @@ public class StudentController {
     }
 
     @PostMapping //POST http://localhost:8080/students
-    public Student createStudent(@RequestBody Student student) {
-        return studentService.createStudent(student);
+    public Student createStudent(@RequestBody Student student1) {
+        return studentService.createStudent(student1);
     }
 
     @GetMapping("{id}") //GET http://localhost:8080/students

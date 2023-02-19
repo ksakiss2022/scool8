@@ -24,6 +24,16 @@ public class Student {
 
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", faculty=" + faculty +
+                '}';
+    }
+
     public long getId() {
         return id;
     }
@@ -59,11 +69,6 @@ public class Student {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, age);
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + '}';
     }
 
     public Faculty getFaculty() {
