@@ -24,7 +24,7 @@ import static java.nio.file.StandardOpenOption.CREATE_NEW;
 @Service
 @Transactional
 public class AvatarService {
-    Logger logger= LoggerFactory.getLogger(AvatarService.class);
+    private final Logger logger= LoggerFactory.getLogger(AvatarService.class);
     @Value("${students.avatar.dir.path}")
     private String avatarsDir;
 
@@ -35,9 +35,11 @@ public class AvatarService {
     public AvatarService(StudentService studentService, AvatarRepository avatarRepository) {
         this.studentService = studentService;
         this.avatarRepository = avatarRepository;
+
     }
 
     public void uploadAvatar(Long studentId, MultipartFile file) throws IOException {
+        logger.debug("upload avatar:{}",studentId, file);
         Student student = studentService.findStudent(studentId);
 
         Path filePath = Path.of(avatarsDir, studentId + "." + getExtension(file.getOriginalFilename()));
@@ -65,15 +67,22 @@ public class AvatarService {
     }
 
     public Avatar findAvatar(Long studentId) {
-        return avatarRepository.findByStudentId(studentId).orElse(new Avatar());
+        logger.debug("find avatar:{}",studentId);
+        final var avatar = avatarRepository.findByStudentId(studentId).orElse(new Avatar());
+        logger.debug("find is the avatar{}", avatar);
+        return avatar;
         //   return avatarRepository.findByStudentId(studentId).orElseThrow();
     }
 
     private String getExtension(String fileName) {
-        return fileName.substring(fileName.lastIndexOf(".") + 1);
+        logger.debug("get extension:{}",fileName);
+        final var substring = fileName.substring(fileName.lastIndexOf(".") + 1);
+        logger.debug("get this extension{}", substring);
+        return substring;
     }
 
     private byte[] generateImageDate(Path filePath) throws IOException {
+        logger.debug("We generate Image Date:{}",filePath);
         try (InputStream is = Files.newInputStream(filePath);
              BufferedInputStream bis = new BufferedInputStream(is, 1024);
              ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
@@ -92,6 +101,7 @@ public class AvatarService {
     }
 
     public List<Avatar> getAllAvatar(Integer pageNumber, Integer pageSize) {
+        logger.debug("We getting all avatare:{}",pageNumber,pageSize);
         PageRequest pageRequest=PageRequest.of(pageNumber-1,pageSize);
         return avatarRepository.findAll(pageRequest).getContent();
     }

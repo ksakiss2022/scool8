@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class FacultyService {
-    Logger logger= LoggerFactory.getLogger(FacultyService.class);
+    private final Logger logger= LoggerFactory.getLogger(FacultyService.class);
     private final FacultyRepository facultyRepository;
 
     public FacultyService(FacultyRepository facultyRepository) {
