@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Service
-public class StudentService implements StudentServiceInterface {
+public class StudentService {
     private final Logger logger= LoggerFactory.getLogger(StudentService.class);
     private final StudentRepository studentRepository;
 
