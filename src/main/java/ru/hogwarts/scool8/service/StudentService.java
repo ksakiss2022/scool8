@@ -9,6 +9,7 @@ import ru.hogwarts.scool8.repository.StudentRepository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class StudentService {
@@ -103,4 +104,19 @@ public class StudentService {
         logger.debug("We output the student by name {}",studentByName);
         return studentByName;
     }
+
+    public Stream<String> findForAStudentByTheFirstLetterOfTheNameA(){
+        return studentRepository.findAll().stream()
+                .map(Student::getName)
+                .map(String::toUpperCase)
+                .filter(s->s.startsWith("А")).sorted();
+    }
+
+    public double findStudentAverageAgeNew(){
+        return studentRepository.findAll().stream()
+                .mapToDouble(Student::getAge)
+                .average()
+                .orElseThrow();
+    }
+
 }

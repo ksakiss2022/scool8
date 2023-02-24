@@ -10,6 +10,7 @@ import ru.hogwarts.scool8.service.StudentService;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 
 @RestController
@@ -72,8 +73,18 @@ public class StudentController {
     }
 
     @GetMapping("/student/name{name}") //GET http://localhost:8080/student/name{name}
-    public ResponseEntity<List<Student>> getStudentByName(@PathVariable("name")String name){
-        List<Student> student=studentService.getStudentByName(name);
+    public ResponseEntity<List<Student>> getStudentByName(@PathVariable("name") String name) {
+        List<Student> student = studentService.getStudentByName(name);
         return ResponseEntity.ok(student);
+    }
+
+    @GetMapping("/findForAStudentByTheFirstLetterOfTheNameA")
+    public Stream<String> findForAStudentByTheFirstLetterOfTheNameA() {
+        return studentService.findForAStudentByTheFirstLetterOfTheNameA();
+    }
+
+    @GetMapping("/findStudentAverageAgeNew")
+    public double findStudentAverageAgeNew() {
+        return studentService.findStudentAverageAgeNew();
     }
 }
