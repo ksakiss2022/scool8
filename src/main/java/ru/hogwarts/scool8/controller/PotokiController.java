@@ -16,21 +16,12 @@ public class PotokiController {
 
     @GetMapping("/printStudents") //GET http://localhost:8080/potoki/printStudents
     public void printStudents() {
-        potokiService.printStudentsSync();
+        potokiService.printStudents();
     }
 
-    @GetMapping("/printStudentsSync") //GET http://localhost:8080/potoki/printStudentsSync
-    public void printStudentsSync() {
-        potokiService.printStudentsSync();
+    @GetMapping("/printStudentsNotSync") //GET http://localhost:8080/potoki/printStudentsNotSync
+    public void printStudentsNotSync() {
+        potokiService.printStudentsNotSync();
     }
 
-    @GetMapping("/variant2PrintStudents") //GET http://localhost:8080/potoki/variant2PrintStudents
-    public void variant2PrintStudents() {
-        potokiService.variant2PrintStudents();
-    }
-
-    @GetMapping("/variant2printStudentsSync") //GET http://localhost:8080/potoki/variant2printStudentsSync
-    public void variant2printStudentsSync() {
-        potokiService.variant2printStudentsSync();
-    }
 }
