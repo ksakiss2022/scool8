@@ -20,6 +20,11 @@ public class Student {
 
     private Faculty faculty;
 
+
+
+    public Student(String s) {
+    }
+
     public Student() {
 
     }
