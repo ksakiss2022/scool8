@@ -1,5 +1,6 @@
 package ru.hogwarts.scool8.repository;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> theLastFiveStudents();
 
     List<Student> getStudentByName(String name);
+
+
 }

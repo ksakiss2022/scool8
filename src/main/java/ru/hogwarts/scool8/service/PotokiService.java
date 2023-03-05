@@ -54,18 +54,10 @@ public class PotokiService {
         LOG.info(student.getName());
     }
 
-
+    // чтоб работало, надо чтоб в этот метод попадали студенты. пока нет
     public void printStudents() throws InstantiationException, IllegalAccessException {
         List<Student> students = studentRepository.getStudentByName(String.valueOf(PageRequest.of(0, 6))).getClass().newInstance();
-
-//        students.add(new Student("Student 1"));
-//        students.add(new Student("Student 2"));
-//        students.add(new Student("Student 3"));
-//        students.add(new Student("Student 4"));
-//        students.add(new Student("Student 5"));
-//        students.add(new Student("Student 6"));
-//        students.add(new Student("Student 7"));
-
+        //   List<Student> students = new ArrayList<>(studentRepository.getStudentByName(String.valueOf(PageRequest.of(0, 6))));
 
         printStudent((Student) students.subList(0, 2));
         new Thread(() -> printStudent((Student) students.subList(2, 4))).start();
