@@ -1,5 +1,4 @@
 package ru.hogwarts.scool8.model1;
-
 import javax.persistence.*;
 import java.util.Objects;
 

@@ -1,5 +1,4 @@
 package ru.hogwarts.scool8.authorController;
-
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.scool8.model1.Author;
 import ru.hogwarts.scool8.model1.Book;

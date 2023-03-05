@@ -1,5 +1,4 @@
 package ru.hogwarts.scool8.service1;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
